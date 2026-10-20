@@ -1,0 +1,11 @@
+build/
+.cache/
+CMakeFiles/
+
+*.o
+*.d
+
+*.png
+*.jpg
+
+CMakeLists.txt
