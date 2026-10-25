@@ -36,10 +36,10 @@ class Board
         bool movePiece(Location, Location destination);  
         bool movePiece(Piece&, Location destination); 
 
-        bool isEmpty(const Location&) const;
+        //bool isEmpty(const Location&) const;
         
         // nullptr if the location doesn't have a piece
-        Piece* getPiece(const Location&) const;
+        std::shared_ptr<Piece> getPiece(const Location&) const;
     
 };
 

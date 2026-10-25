@@ -39,9 +39,6 @@ void Piece::moveTo(Location destination) {
     
 };
 
-Location Piece::moveBy(Location offset){
-    
-};
 
 
 

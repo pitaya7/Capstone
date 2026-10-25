@@ -42,7 +42,9 @@ class Piece
         // move this piece to this Location.
         void moveTo(Location);
 
-        Location moveBy(Location);
+        Location getMoveLoc(const Location& offset, int scale=1) {
+            return location_+(offset*scale); 
+        };
 
         Color getColor() const;
 

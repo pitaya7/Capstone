@@ -14,23 +14,19 @@ struct Location
 
 };
     // Checks if locations have the same row and column 
-constexpr bool operator==(const Location& first, const Location& second) {
+inline bool operator==(const Location& first, const Location& second) {
     return first.row == second.row && first.column == second.column;
 }
     
 /* Creates new Location with the summed rows and columns of 
  *      two locations. Used when moving pieces                      */
-constexpr Location operator+(const Location& first, const Location& second) {
+inline Location operator+(const Location& first, const Location& second) {
     return Location{first.row + second.row, first.column + second.column};
 }
 
 // returns a location 
-constexpr Location operator*(const Location& first, int scale) {
+inline Location operator*(const Location& first, int scale) {
     return Location{(first.row + scale), (first.column + scale)};
-}
-
-constexpr Location operator*(const Location& first, const Location& scale) {
-    return Location{first.row + scale.row, first.column + scale.column};
 }
 
 
