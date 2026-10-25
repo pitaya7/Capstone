@@ -1,6 +1,16 @@
 
-# include "Board.h"
+#include "Board.h"
+#include "Piece.h"
 
 
-//TODO 
+//TODO
+
+
+Board::Board() {
+
+};
+
+Piece* Board::getPiece(const Location& sqaure) const {
+    pieces
+};
 

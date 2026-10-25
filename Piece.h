@@ -11,22 +11,26 @@
 #include <vector>
 #include "Location.h"
 
-using namespace std;
-
-
 
 enum Color {
     red,
     black
 };
 
+// directions, as location offsets of +/- 1 row and column
+namespace dir {  
+    inline constexpr Location up_left {1,-1};
+    inline constexpr Location up_right {1,1};
+    inline constexpr Location down_left {-1,-1};
+    inline constexpr Location down_right {-1,1};
+};
 
 class Piece 
 {
     protected:
         Color color_;
         Location location_;
-        vector<Location> moveOffsets;
+        std::vector<Location> moveOffsets;
         int captured();
 
     public:
@@ -38,9 +42,11 @@ class Piece
         // move this piece to this Location.
         void moveTo(Location);
 
+        Location moveBy(Location);
+
         Color getColor() const;
 
-        virtual vector<Location> getOffsets() const = 0;
+        virtual std::vector<Location> getOffsets() const = 0;
 
         // Symbol to be shown on board display (b/r for Man, B/R for King)
         virtual char getSymbol() const = 0;
@@ -69,7 +75,7 @@ class Man : public Piece
         return (color_ == Color::red) ? 'r' : 'b';
     }
 
-    vector<Location> getOffsets() const override;
+    std::vector<Location> getOffsets() const override;
 };
 
 
@@ -86,7 +92,7 @@ class King : public Piece
         return (color_ == Color::red) ? 'R' : 'B';
     }
 
-    vector<Location> getOffsets() const override;
+    std::vector<Location> getOffsets() const override;
 
 };
 

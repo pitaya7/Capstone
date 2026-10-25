@@ -9,8 +9,6 @@
 #include "Piece.h"
 #include "Location.h"
 
-using namespace std;
-
 
 struct Move
 {
@@ -22,7 +20,7 @@ struct Move
 class Board 
 {            
     private:
-        map<Location, shared_ptr<Piece>> pieces;
+        std::map<Location, std::shared_ptr<Piece>> pieces;
     
     public:
         Board();

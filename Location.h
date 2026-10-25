@@ -1,12 +1,10 @@
 /*
  * Defines Location structure to store pairs of (row, column) ints
- 
+ * Also defines operator used to compare and manipulate Locations
 **/
 
 #ifndef LOCATION_H
 #define LOCATION_H
-
-#include <ostream>
 
 
 struct Location 
@@ -14,23 +12,27 @@ struct Location
     int row;
     int column;
 
-    // Checks if locations have the same row and column 
-    bool operator==(const Location& other) const {
-        return row == other.row && column == other.column;
-    }
-    
-    /* Creates new Location with the summed rows and columns of 
-     *      this and another location. Used when moving pieces                      */
-    Location operator+(const Location& other) const {
-        return Location{row + other.row, column + other.column};
-    }
-    
-    // Output location (for debug)
-    friend std::ostream& operator<<(std::ostream& os, const Location& location) {
-        os << "(" << location.row << ", " << location.column << ")";
-        return os;
-    }
 };
+    // Checks if locations have the same row and column 
+constexpr bool operator==(const Location& first, const Location& second) {
+    return first.row == second.row && first.column == second.column;
+}
+    
+/* Creates new Location with the summed rows and columns of 
+ *      two locations. Used when moving pieces                      */
+constexpr Location operator+(const Location& first, const Location& second) {
+    return Location{first.row + second.row, first.column + second.column};
+}
+
+// returns a location 
+constexpr Location operator*(const Location& first, int scale) {
+    return Location{(first.row + scale), (first.column + scale)};
+}
+
+constexpr Location operator*(const Location& first, const Location& scale) {
+    return Location{first.row + scale.row, first.column + scale.column};
+}
+
 
 
 

@@ -20,7 +20,7 @@
 
 int main(){
     using namespace std;
-
+ 
     Location loc{.row=4,.column=5};
     cout << loc.column <<endl;
 
