@@ -9,6 +9,9 @@
 #include "Piece.h"
 #include "Location.h"
 
+// height and witdth (number of squares) of board
+static const int BOARD_SIZE = 8;
+
 
 struct Move
 {
@@ -26,7 +29,7 @@ class Board
         Board();
         ~Board() = default; 
 
-        void setupBoard();
+        void displayBoard(Color side);
 
         // getMoves(Piece) const;  TODO
 
@@ -34,12 +37,11 @@ class Board
          * using the board map and Location.
         */
         bool movePiece(Location, Location destination);  
-        bool movePiece(Piece&, Location destination); 
+        //bool movePiece(Piece&, Location destination); 
 
-        //bool isEmpty(const Location&) const;
         
         // nullptr if the location doesn't have a piece
-        std::shared_ptr<Piece> getPiece(const Location&) const;
+        std::optional<std::shared_ptr<Piece>> getPiece(const Location&);
     
 };
 

@@ -47,7 +47,6 @@ void Piece::moveTo(Location destination) {
 
 
 
-
 /* Black piece moves black side --> red side (up left or up right)
  * Red piece moves red side --> black side (down left or down right)
 */
