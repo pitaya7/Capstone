@@ -1,7 +1,9 @@
 
 #include "Board.h"
 #include "Location.h"
+#include "Location.h"
 #include "Piece.h"
+#include <exception>
 #include <exception>
 #include <memory>
 #include <iostream>
@@ -9,7 +11,13 @@
 #include <stdexcept>
 #include <optional>
 #include <utility>
+#include <iostream>
+#include <ncurses.h>
+#include <stdexcept>
+#include <optional>
+#include <utility>
 
+using namespace std;
 using namespace std;
 
 //TODO
@@ -63,42 +71,5 @@ optional<shared_ptr<Piece>> Board::getPiece(const Location& square) {
 // assumes move is legal and square is unoccupied
 // creates destination square if it doesn't exist
 bool Board::movePiece(Location current, Location destination) {
-    try {
-        // check if row or col are out of bounds
-        if (!(current < BOARD_SIZE) || current >= 0) { 
-            cout << ""
-            return false;
-        }
-        auto p1 = pieces.at(current);
-        auto p2 =
-        getPiece(current);
-
-
-    } catch (out_of_range) {
-        cout << "selected location doesn't exist";
-        return false;
-    }
-    
-};
-
-
-//void displayBoard(ostream os, Color side) {
-
-void Board::displayBoard(Color side) {
-    cout << " ///////////          \n"
-            " //                      \n"
-            "                      \n"
-            "                      \n"
-            "                      \n"
-            "                      \n"
-            "                      \n"
-            "                      \n"
-            "                      \n" 
-            "";
-    for (auto p : pieces) {
-        cout << p.second->getSymbol();
-    };
-    
 
 };
-
