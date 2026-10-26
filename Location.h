@@ -51,5 +51,15 @@ inline bool operator<(const Location& first, const int second) {
     return (first.row < second && first.column < second);
 }
 
+inline bool operator<(const Location& first, const Location& second) {
+    if (first.row > second.row)
+        return false;
+    else if (first.column < second.column)
+        return true;
+    else {
+        return false;
+    }
+}
+
 
 #endif

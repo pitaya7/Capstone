@@ -70,7 +70,7 @@ class Man : public Piece
     using Piece::Piece;
     
     char getSymbol() const override {
-        return (color_ == Color::red) ? 'r' : 'b';
+        return (color_ == red) ? 'r' : 'b';
     }
 
     std::vector<Location> getOffsets() const override;
@@ -87,7 +87,7 @@ class King : public Piece
     using Piece::Piece;
 
     char getSymbol() const override {
-        return (color_ == Color::red) ? 'R' : 'B';
+        return (color_ == red) ? 'R' : 'B';
     }
 
     std::vector<Location> getOffsets() const override;

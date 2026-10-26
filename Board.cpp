@@ -23,36 +23,55 @@ using namespace std;
 //TODO
 
 
+
+
 Board::Board() 
 {
-    pieces;
     // initialize board with all pieces
     // 3 rows for each side ( 4 pieces each row)
     // alternating columns (8 total cols)
     for (int c = 0; c < 8; c++) 
     {
-        for (int r = 0; r < 3; r++) 
-        {
-            Location loc1, loc2;
-
-            if (c % 2 == 0){ // even columns
-
-            } else { // odd
-
-            }
-
-            // put two new pieces with corresponding locations onto the board
-            pieces.insert( 
-                make_pair ( loc1, 
-                            shared_ptr<Piece>(new Man(black, loc1))
-                )
-            );
+    
+        //loc_b0, loc_b1, loc_b2, loc_r0, loc_r1, loc_r2;        
+        Location locs[6];
+        if (c % 2 == 0){ // even columns
             
-            pieces.insert( 
-                make_pair ( loc2, 
-                            shared_ptr<Piece>(new Man(red, loc2))
-                )
-            );
+
+            // first and third row of black pieces
+            locs[0] = {.row=(0), .column=c }; 
+            locs[2] = {.row=(2), .column=c };
+
+            // red pieces in middle row on even columns
+            locs[4] = {.row=(6), .column=c };
+
+            // insert new pieces to board
+
+            pieces2[locs[0]] = new Man(black, locs[0]);
+            pieces2[locs[2]] = new Man(black, locs[2]);
+
+            pieces2[locs[4]] = new Man(red, locs[4]);
+            //pieces2.insert( make_pair (loc_r1, new Man(red, loc_r1)));
+
+        } else { // odd columns
+
+            // one row of black pieces in middle row on odd columns
+            locs[1] = {.row=(1), .column=c };
+
+            // two rows of red
+            locs[3] = {.row=(5), .column=c };
+            locs[5] = {.row=(7), .column=c };
+
+
+            //pieces2.insert( make_pair (loc_b1, new Man(black, loc_b1)));
+            pieces2[locs[1]] = new Man(black, locs[1]);
+
+            pieces2[locs[3]] = new Man(red, locs[3]);
+            pieces2[locs[5]] = new Man(red, locs[5]);
+
+        }
+        for (auto l : locs){
+            cout << "("<< l.row << ", "<< l.column << ")\n";
         }
     }
 };
@@ -73,3 +92,8 @@ optional<shared_ptr<Piece>> Board::getPiece(const Location& square) {
 bool Board::movePiece(Location current, Location destination) {
 
 };
+
+//map<Location, optional<shared_ptr<Piece>>> Board::getPieces() const {
+map<Location, optional<Piece*>> Board::getPieces() const {
+    return pieces2;
+}

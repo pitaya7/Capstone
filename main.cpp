@@ -20,14 +20,15 @@
 
 using namespace std;
 
+void displayBoard(const Board& board, Color side);
 
 int main()
 {
  
-    Board* board = new Board;
+    Board board = Board();
     Location loc{.row=4,.column=5};
     cout << loc.column <<endl;
-    board->displayBoard(red);
+    displayBoard(board, red);
 
 
 
@@ -48,4 +49,18 @@ int main()
     // end if game won or stalemate (or user input is "quit")
     endwin(); */
 
+};
+
+
+/* Gets map with getPieces(), and for each item {Location, sharedptr}
+ *  in the map, p.second is the sharedptr to a piece,
+ * get() gets the piece ptr, ->getSymbol()
+ *
+*/
+void displayBoard(const Board& board, Color side) {
+
+    for (auto p: board.getPieces()) {
+        
+        cout << p.second.value()->getSymbol() << " at (" << p.first.row << ", " << p.first.column << ") \n";
+    }
 };
