@@ -3,6 +3,7 @@
 #include "Location.h"
 #include "Location.h"
 #include "Piece.h"
+#include <codecvt>
 #include <exception>
 #include <exception>
 #include <memory>
@@ -49,7 +50,7 @@ Board::Board()
 
             pieces2[locs[0]] = new Man(black, locs[0]);
             pieces2[locs[2]] = new Man(black, locs[2]);
-
+            cout << pieces2[locs[0]].value()->getSymbol() << endl;
             pieces2[locs[4]] = new Man(red, locs[4]);
             //pieces2.insert( make_pair (loc_r1, new Man(red, loc_r1)));
 
@@ -71,7 +72,7 @@ Board::Board()
 
         }
         for (auto l : locs){
-            cout << "("<< l.row << ", "<< l.column << ")\n";
+            cout << "("<< l.row << ", "<< l.column << ") " << pieces2[l].value()->getSymbol() << endl;
         }
     }
 };
