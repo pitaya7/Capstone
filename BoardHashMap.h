@@ -5,6 +5,13 @@
 #include "Piece.h"
 #include <vector>
 
+
+struct Square {
+	Location location;
+    Piece* piece;
+};
+
+
 // The keys are Location structs
 // Each bucket has a pointer to a Piece (Man or King)
 class BoardHashMap 
@@ -34,13 +41,13 @@ private:
 	
 public:
 	BoardHashMap() {
-		for (int i = 0; i <BOARD_SIZE; i++) {
+		for (int i = 0; i < BOARD_SIZE; i++) {
 			table[i] = nullptr;
 		}
 	};
 
 	~BoardHashMap() {
-		for (int i = 0; i <BOARD_SIZE; i++) {
+		for (int i = 0; i < BOARD_SIZE; i++) {
 			delete table[i];
 		}
     };
@@ -53,22 +60,6 @@ public:
         	return table[Hash(loc)];
     }
 	
-	bool contains(const Location& loc) const {
-		// get() checks if loc's valid
-        return get(loc) != nullptr;
-    }
-
-	int size() const {
-		return num_pcs;
-	}
-
-	static bool isValid(const Location& loc) {
-	// check if within board range (0—8) and is a dark square
-        return  loc.row >= 0 && loc.row < 8 &&
-                loc.column >= 0 && loc.column < 8 &&
-        		(loc.row + loc.column) % 2 == 0;
-    }
-
 	bool put(Location loc, Piece* piece) {
 		if (!isValid(loc)) 
 			return false;
@@ -82,6 +73,33 @@ public:
         	return true;
 		}
     }
+	
+	static bool isValid(const Location& loc) {
+	// check if within board range (0—8) and is a dark square
+        return  loc.row >= 0 && loc.row < 8 &&
+                loc.column >= 0 && loc.column < 8 &&
+        		(loc.row + loc.column) % 2 == 0;
+    }
+
+	Piece* remove(const Location& loc) {
+		//TODO
+	}
+
+	std::vector<Square> getAll() const {
+		std::vector<Square> all_squares;
+		//TODO
+		return all_squares;
+	}
+
+	bool contains(const Location& loc) const {
+		// get() checks if loc's valid
+        return get(loc) != nullptr;
+    }
+
+	int size() const {
+		return num_pcs;
+	}
+
 	
 	
 };
